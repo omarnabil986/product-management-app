@@ -1,0 +1,53 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <div>
+    <input formControlName="name" placeholder="Product Name" />
+    <div
+      *ngIf="
+        productForm.controls['name'].invalid &&
+        productForm.controls['name'].touched
+      "
+    >
+      <small style="color: red">Name is required.</small>
+    </div>
+  </div>
+
+  <div>
+    <input formControlName="description" placeholder="Description" />
+    <div
+      *ngIf="
+        productForm.controls['description'].invalid &&
+        productForm.controls['description'].touched
+      "
+    >
+      <small style="color: red">Description is required.</small>
+    </div>
+  </div>
+
+  <div>
+    <input formControlName="price" placeholder="Price" type="number" />
+    <div
+      *ngIf="
+        productForm.controls['price'].invalid &&
+        productForm.controls['price'].touched
+      "
+    >
+      <small style="color: red"
+        >Price is required and must be greater than 0.</small
+      >
+    </div>
+  </div>
+
+  <div>
+    <input formControlName="imageUrl" placeholder="Image URL" />
+    <div
+      *ngIf="
+        productForm.controls['imageUrl'].invalid &&
+        productForm.controls['imageUrl'].touched
+      "
+    >
+      <small style="color: red">Image URL is required.</small>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="productForm.invalid">Submit</button>
+</form>

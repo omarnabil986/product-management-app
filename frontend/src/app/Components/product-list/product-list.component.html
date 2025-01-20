@@ -1,0 +1,13 @@
+<!-- Add button in ProductListComponent template -->
+<button [routerLink]="'/products/add'">Add Product</button>
+
+<div *ngFor="let product of products">
+  <div class="product-card">
+    <h3>{{ product.name }}</h3>
+    <p>{{ product.description }}</p>
+    <p>{{ product.price | currency }}</p>
+    <img [src]="product.imageUrl" alt="{{ product.name }}" />
+    <button (click)="editProduct(product._id)">Edit</button>
+    <button (click)="deleteProduct(product._id)">Delete</button>
+  </div>
+</div>
