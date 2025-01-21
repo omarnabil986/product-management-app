@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  errorMessage: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -39,6 +40,7 @@ export class LoginComponent {
         },
         (error) => {
           console.error('Login error:', error);
+          this.errorMessage = 'Invalid credentials';
         }
       );
     }

@@ -1,13 +1,39 @@
-<!-- Add button in ProductListComponent template -->
-<button [routerLink]="'/products/add'">Add Product</button>
+<div class="background">
+  <div class="container pt-4 pb-4">
+    <button
+      type="button"
+      class="btn btn-success btn-lg mb-4"
+      [routerLink]="'/products/add'"
+    >
+      Add Product
+    </button>
 
-<div *ngFor="let product of products">
-  <div class="product-card">
-    <h3>{{ product.name }}</h3>
-    <p>{{ product.description }}</p>
-    <p>{{ product.price | currency }}</p>
-    <img [src]="product.imageUrl" alt="{{ product.name }}" />
-    <button (click)="editProduct(product._id)">Edit</button>
-    <button (click)="deleteProduct(product._id)">Delete</button>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      <div class="col" *ngFor="let product of products">
+        <div class="card">
+          <img
+            [src]="product.imageUrl"
+            class="card-img-top"
+            [alt]="product.name"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <p class="card-text">{{ product.price | currency }}</p>
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-info" (click)="editProduct(product._id)">
+                Edit
+              </button>
+              <button
+                class="btn btn-danger"
+                (click)="deleteProduct(product._id)"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

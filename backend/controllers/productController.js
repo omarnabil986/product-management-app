@@ -1,4 +1,3 @@
-// controllers/productController.js
 const Product = require("../models/product");
 const Joi = require("joi");
 const cloudinary = require("../config/cloudinary");
@@ -11,41 +10,6 @@ const productSchema = Joi.object({
   imageUrl: Joi.string().optional(),
 });
 
-// Create product
-// exports.createProduct = async (req, res) => {
-//   const { error } = productSchema.validate(req.body); // Joi validation
-//   if (error) return res.status(400).send(error.details[0].message);
-//   // const product = new Product(req.body);
-//   // try {
-//   //   await product.save();
-//   //   res.status(201).json(product);
-//   try {
-//     let imageUrl = null;
-
-//     // Check if an image file is uploaded
-//     if (req.file) {
-//       const result = await cloudinary.uploader
-//         .upload_stream({ folder: "products" }, (error, result) => {
-//           if (error) throw error;
-//           imageUrl = result.secure_url;
-//         })
-//         .end(req.file.buffer);
-//     }
-
-//     // Create product with image URL
-//     const product = new Product({
-//       ...req.body,
-//       imageUrl: imageUrl,
-//     });
-
-//     await product.save();
-//     res.status(201).json(product);
-//   } catch (err) {
-//     res.status(500).send("Server error");
-//   }
-// };
-// controllers/productController.js
-// controllers/productController.js
 exports.createProduct = async (req, res) => {
   try {
     let imageUrl = null;

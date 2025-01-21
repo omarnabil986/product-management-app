@@ -18,8 +18,12 @@ export class ProductService {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 
-  addProduct(product: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, product);
+  // addProduct(product: any): Observable<any> {
+  //   return this.http.post<any>(this.apiUrl, product);
+  // }
+
+  addProductWithFile(formData: FormData) {
+    return this.http.post(this.apiUrl, formData);
   }
 
   updateProduct(id: string, productData: any): Observable<any> {
@@ -33,5 +37,9 @@ export class ProductService {
 
   deleteProduct(id: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
+
+  updateProductWithFile(id: string, formData: FormData) {
+    return this.http.put(`${this.apiUrl}/${id}`, formData);
   }
 }

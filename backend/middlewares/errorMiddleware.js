@@ -1,7 +1,4 @@
-// middleware/errorMiddleware.js
 function errorHandler(err, req, res, next) {
-  console.error(err.stack); // Optional: log the error for debugging purposes
-
   // Check if it's a validation error or a server error
   if (err.name === "ValidationError") {
     return res.status(400).json({

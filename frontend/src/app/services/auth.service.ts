@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from '../environments/environments';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ export class AuthService {
   private apiUrl = environment.apiUrl;
   private authSubject = new BehaviorSubject<boolean>(this.isAuthenticated());
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   register(user: any) {
     return this.http.post(`${this.apiUrl}/auth/register`, user);
@@ -31,6 +32,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     this.setAuthStatus(false);
+    this.router.navigate(['/']);
   }
 
   getAuthStatus() {

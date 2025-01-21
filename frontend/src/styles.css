@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+img {
+  width: 20rem; /* Set the width */
+  height: 15rem; /* Set the height */
+  object-fit: cover; /* Ensures the image covers the area without distorting */
+}

@@ -1,53 +1,82 @@
-<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-  <div>
-    <input formControlName="name" placeholder="Product Name" />
-    <div
-      *ngIf="
-        productForm.controls['name'].invalid &&
-        productForm.controls['name'].touched
-      "
-    >
-      <small style="color: red">Name is required.</small>
-    </div>
-  </div>
-
-  <div>
-    <input formControlName="description" placeholder="Description" />
-    <div
-      *ngIf="
-        productForm.controls['description'].invalid &&
-        productForm.controls['description'].touched
-      "
-    >
-      <small style="color: red">Description is required.</small>
-    </div>
-  </div>
-
-  <div>
-    <input formControlName="price" placeholder="Price" type="number" />
-    <div
-      *ngIf="
-        productForm.controls['price'].invalid &&
-        productForm.controls['price'].touched
-      "
-    >
-      <small style="color: red"
-        >Price is required and must be greater than 0.</small
+<div
+  class="d-flex justify-content-center align-items-center graded"
+  style="height: 100vh"
+>
+  <form
+    [formGroup]="productForm"
+    (ngSubmit)="onSubmit()"
+    class="border p-4 rounded shadow-lg form-background"
+  >
+    <div class="mb-3">
+      <label for="name" class="form-label">Product Name</label>
+      <input
+        class="form-control"
+        id="name"
+        formControlName="name"
+        placeholder="Product Name"
+      />
+      <div
+        *ngIf="
+          productForm.controls['name'].invalid &&
+          productForm.controls['name'].touched
+        "
       >
+        <small style="color: red">Name is required.</small>
+      </div>
     </div>
-  </div>
 
-  <div>
-    <input formControlName="imageUrl" placeholder="Image URL" />
-    <div
-      *ngIf="
-        productForm.controls['imageUrl'].invalid &&
-        productForm.controls['imageUrl'].touched
-      "
+    <div class="mb-3">
+      <input
+        class="form-control"
+        formControlName="description"
+        placeholder="Description"
+      />
+      <div
+        *ngIf="
+          productForm.controls['description'].invalid &&
+          productForm.controls['description'].touched
+        "
+      >
+        <small style="color: red">Description is required.</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <input
+        class="form-control"
+        formControlName="price"
+        placeholder="Price"
+        type="number"
+      />
+      <div
+        *ngIf="
+          productForm.controls['price'].invalid &&
+          productForm.controls['price'].touched
+        "
+      >
+        <small style="color: red"
+          >Price is required and must be greater than 0.</small
+        >
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <input
+        class="form-control"
+        type="file"
+        (change)="onFileSelected($event)"
+      />
+      <div *ngIf="fileError">
+        <small style="color: red">{{ fileError }}</small>
+      </div>
+    </div>
+
+    <button
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="productForm.invalid"
     >
-      <small style="color: red">Image URL is required.</small>
-    </div>
-  </div>
-
-  <button type="submit" [disabled]="productForm.invalid">Submit</button>
-</form>
+      Submit
+    </button>
+  </form>
+</div>
